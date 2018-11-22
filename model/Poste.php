@@ -1,7 +1,7 @@
 <?php
+require_once 'Endereco.php';
 
-
-class Poste{
+class Poste extends Endereco{
 	private $foto;
 	private $numeracao;
 

@@ -1,6 +1,7 @@
 <?php
+require_once 'Poste.php';
 
-class Ocorrencia
+class Ocorrencia extends Poste
 {
     private $classificaUrgencia;
     private $descricaoUrgencia;

@@ -1,10 +1,11 @@
 <?php
 
-include_once '../model/Endereco.php';
+require_once '../model/Endereco.php';
+require_once '../dao/EnderecoDAO';
 
 class EnderecoControle
 {
-	public function verificar(){
+	/*public function verificar(){
 		extract($_REQUEST);
 		if(!isset($cep) || empty($cep)){
 			$msg = "CEP do endereço não informado. Por favor, informe um CEP!";
@@ -35,7 +36,7 @@ class EnderecoControle
 		$enderecoDAO = new EnderecoDAO();
 
 		try{
-			$produtoDAO->incluir($endereco);
+			$produtoDAO->adicionar($endereco);
 
 			session_start();
 
@@ -44,7 +45,7 @@ class EnderecoControle
             $msg= "Não foi possível registrar o endereço"."<br>".$e->getMessage();
             echo $msg;
         }
-	}
+	}*/
 
 	public function listarTodos(){
 		extract($_REQUEST);
