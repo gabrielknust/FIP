@@ -17,7 +17,7 @@ id_endereco int not null,
 foto mediumtext,
 numeracao int,
 foreign key(id_endereco) references Endereco(id_endereco)
-);
+)engine = innoDB;
 
 create table Ocorrencia(
 id_ocorrencia int auto_increment not null primary key,
@@ -25,4 +25,4 @@ id_poste int not null,
 classificaUrgencia varchar(500),
 descricaoUrgencia varchar(10000),
 foreign key(id_poste) references Poste(id_poste)
-);
+)engine = innoDB;
