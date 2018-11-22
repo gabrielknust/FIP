@@ -15,7 +15,7 @@ create table Poste(
 id_poste int auto_increment not null primary key,
 id_endereco int not null,
 foto mediumtext,
-numeracao int,
+numeracao varchar(50),
 foreign key(id_endereco) references Endereco(id_endereco)
 )engine = innoDB;
 
@@ -23,6 +23,34 @@ create table Ocorrencia(
 id_ocorrencia int auto_increment not null primary key,
 id_poste int not null,
 classificaUrgencia varchar(500),
-descricaoUrgencia varchar(10000),
+descricaoUrgencia varchar(1000),
 foreign key(id_poste) references Poste(id_poste)
 )engine = innoDB;
+
+DELIMITER &&
+
+CREATE PROCEDURE cadOcorrencia (in cep varchar(14), in bairro varchar(50), in rua varchar(100), in referencia varchar(500),
+in foto longtext, in numeracao varchar(50), in classificaUrgencia varchar(500), in descricaoUrgencia varchar(1000))
+
+begin
+	
+declare idE int;
+declare idP int;
+
+insert into Endereco(cep, vairro, rua, referencia)
+	values(cep, vairro, rua, referencia);
+
+SELECT MAX(id_endereco)
+	INTO idE FROM Endereco;
+    
+insert into Poste(id_endereco, foto, numeracao)
+	values(idE, foto, numeracao);
+
+SELECT MAX(id_poste)
+	INTO idP FROM Poste;
+    
+insert into Ocorrencia(id_poste, classificaUrgencia, descricaoUrgencia)
+	values(idP, classificaUrgencia, descricaoUrgencia);
+    
+end &&
+DELIMITER ;
