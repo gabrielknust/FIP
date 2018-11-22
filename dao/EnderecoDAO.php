@@ -61,13 +61,13 @@ class EnderecoDAO
             }
         }
         
-        public function excluir($id)
+        public function excluir($id_endereco)
         {
             try {
                 $pdo = Conexao::connect();
-                $stmt = $pdo->prepare('DELETE from endereco where id= :id');
+                $stmt = $pdo->prepare('DELETE FROM Endereco WHERE id_endereco = :id_endereco');
                 $stmt->execute(array(
-                    ':id' => $id
+                    ':id_endereco' => $id_endereco
                 ));
             } catch (PDOException $e) {
                 echo 'Error: ' . $e->getMessage();

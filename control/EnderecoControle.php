@@ -61,19 +61,26 @@ class EnderecoControle
 			$enderecoDAO = new EnderecoDAO();
 			$endereco= $enderecoDAO->listarporCEP($cep);
 			$_SESSION['endereco'] = $endereço;
-		} catch
-	}
-	session_start();
-        $descricao = $_REQUEST['descricao'];
-        try {
-            $produtoDao = new ProdutoDAO();
-            $produto = $produtoDao->listarUm($descricao);
-            $_SESSION['produto']= $produto;
-            header('Location: '.$_REQUEST['nextPage']);
-        } catch (Exception $e) {
-            $msg = "Não foi possível listar o produto!";
-            header('Location: ../html/msg.php?msg='.$msg);
+			header('Location: '.$_REQUEST['nextPage']);
+		} catch (Exception $e) {
+            $msg = "Não foi possível listar o endereço";
+            header('Location: ../view/msg.php?msg='.$msg);
         }   
+	}
+
+	public function excluir($id_endereco){
+		$endereco = new Endereco(null,null,null,null);
+		$endereco->setId($_REQUEST['id']);
+
+		try{
+			$enderecoDAO = new EnderecoDAO();
+			$enderecoDAO->excluir($endereco);
+			$msg = "O endereco foi excluido com sucesso!";
+			header('Location: '.$nextPage);
+		} catch (PDOException $e) {
+            $msg = "Não foi possível excluir, tente novamente!";
+        }
+        header('Location: ../html/msg.php?msg=' . $msg);
+	}   
         
-    }
 }
