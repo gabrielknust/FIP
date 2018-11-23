@@ -37,13 +37,13 @@ body {font-size:16px;}
 .alta {
   background-color:  rgba(255, 0, 0, 0.5);
 }
-.média {
+.mediana {
   background-color:  rgba(255, 255, 0, 0.5);
 }
 .baixa {
   background-color: rgba(0,128,0,0.5);
 }
-.moderada {
+.resolvida {
   background-color: rgba(192,192,192,0.5);
 }
 </style>
