@@ -4,7 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <?php
-  if(isset($_SESSION['usuario'])){
+  if(!isset($_SESSION['ocorrencia'])){
+    header('Location: ../control/Control.php?metodo=listar5&nomeClasse=OcorrenciaControle&nextPage=../view/ultimasOcorrencias.php');
+  }
+  if(isset($_SESSION['usuario']) && isset($_SESSION['ocorrencia'])){
+    $ocorrencia = $_SESSION['ocorrencia'];
     session_destroy();  
   }
 ?>
@@ -39,7 +43,7 @@ body {font-size:16px;}
 .baixa {
   background-color: rgba(0,128,0,0.5);
 }
-.resolvida {
+.moderada {
   background-color: rgba(192,192,192,0.5);
 }
 </style>
@@ -86,7 +90,7 @@ body {font-size:16px;}
           <th>Numero</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody id="tbody">
         <tr class="resolvida">
           <td>Default</td>
           <td>Defaultson</td>
@@ -135,8 +139,23 @@ function onClick(element) {
 <script >
 		$('.js-tilt').tilt({
 			scale: 1.1
-		})
-	</script>
+		});
+</script>
+
+<script>
+  $(function(){
+    var ocorrencia = <?php
+        echo $ocorrencia; 
+    ?>;
+
+    $.each(ocorrencia,function(i,item)){
+
+      $("#tbody").append('<tr class="' + item.classificaUrgencia + '"><td>' + item.cep + '</td><td>' + item.bairro + '</td><td>' + item.rua
+        + '</td><td>' + item.numeracao + '</td></tr>');
+
+    }
+  });
+</script>
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
