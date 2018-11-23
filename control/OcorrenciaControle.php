@@ -40,15 +40,17 @@ class OcorrenciaControle
 			$msg = "Descrição da urgência não informada. Por favor, informe uma descrição para urgência";
 			header('Location: ../view/index.php?msg='.$msg);
 		}
+		print_r($_FILES);
 			if(!empty($_FILES['foto']['tmp_name']))
 				{
-					$imagem=base64_encode(file_get_contents($_FILES['foto']['tmp_name']));
+					$foto=base64_encode(file_get_contents($_FILES['foto']['tmp_name']));
 				}
 				else{
 					$foto='null';
 				}
 			$ocorrencia = new Ocorrencia($cep, $bairro, $rua, $ponto_de_referencia);
 			$ocorrencia->setFoto($foto);
+			
 			$ocorrencia->setNumeracao($numeracao);
 			$ocorrencia->setClassificaUrgencia($classificaUrgencia);
 			$ocorrencia->setDescricaoUrgencia($descricaoUrgencia);
@@ -70,15 +72,23 @@ class OcorrenciaControle
 
 	public function listarTodos(){
         extract($_REQUEST);
-        $ocorrenciaDAO= new InternoDAO();
+        $ocorrenciaDAO= new OcorrenciaDAO();
         $ocorrencias = $ocorrenciaDAO->listarTodos();
         session_start();
         $_SESSION['ocorrencia']=$ocorrencias;
         header('Location: '.$nextPage);
     }
 
-    public function excluir($id_ocorrencia){
-
+    public function excluir(){
+    	session_start();
+    	try {
+	    	$ocorrenciaDAO=new OcorrenciaDAO();
+	    	$ocorrenciaDAO->excluir($_SESSION['id_endereco'],$_SESSION['id_ocorrencia'],$_SESSION['id_poste']);
+	    	header('Location:'.$nextPage.'?msg=Excluido com sucesso');
+    	} catch (PDOException $e) {
+    		echo "deu merda";
+    	}
+ 
     }
 
     public function listarUm($id){
