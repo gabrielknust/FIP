@@ -95,7 +95,7 @@ body {font-size:16px;}
 				</div>
 				<div class="wrap-input1 validate-input" data-validate = "Urgência é necessário">
 
-					<label>Média <input class="input1" style="width: 20px" type="radio" name="classificaUrgencia" value="media" required> </label>
+					<label>Média <input class="input1" style="width: 20px" type="radio" name="classificaUrgencia" value="mediana" required> </label>
 				</div>
 				<div class="wrap-input1 validate-input" data-validate = "Urgência é necessário">
 
