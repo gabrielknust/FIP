@@ -3,6 +3,15 @@
 <title>FIP</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<?php
+  if(!isset($_SESSION['ocorrencia'])){
+    header('Location: ../control/Control.php?metodo=listarTodos&nomeClasse=OcorrenciaControle&nextPage=../view/ultimasOcorrencias.php');
+  }
+  if(isset($_SESSION['usuario']) && isset($_SESSION['ocorrencia'])){
+    $ocorrencia = $_SESSION['ocorrencia'];
+    session_destroy();  
+  }
+?>
 <link rel="stylesheet" href="./css/style.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
 <link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
@@ -36,7 +45,7 @@ body {font-size:16px;}
 .baixa {
   background-color: rgba(0,128,0,0.5);
 }
-.resolvida {
+.moderada {
   background-color: rgba(192,192,192,0.5);
 }
 i{
@@ -51,7 +60,7 @@ i{
     <h3 class="w3-padding-64"><b>FIP</b></h3>
   </div>
   <div class="w3-bar-block">
-    <a href="./index.html" class="w3-bar-item w3-button w3-hover-white">Fazer Ocorrência</a> 
+    <a href="./index.php" class="w3-bar-item w3-button w3-hover-white">Fazer Ocorrência</a> 
     <a href="ultimasOcorrencias.php" class="w3-bar-item w3-button w3-hover-white">Últimas ocorrências</a> 
     <a href="#" class="w3-bar-item w3-button w3-hover-white">Administrador</a> 
 
@@ -139,6 +148,20 @@ function onClick(element) {
             scale: 1.1
         })
     </script>
+<script>
+  $(function(){
+    var ocorrencia = <?php
+        echo $ocorrencia; 
+    ?>;
+
+    $.each(ocorrencia,function(i,item)){
+
+      $("#tbody").append('<tr class="' + item.classificaUrgencia + '"><td>' + item.cep + '</td><td>' + item.bairro + '</td><td>' + item.rua
+        + '</td><td>' + item.numeracao + '</td><td><button><i class="fas fa-edit"></i></button></td><td><button><i class="fas fa-trash-alt"></i></button></td></tr>');
+
+    }
+  });
+</script>
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
@@ -155,4 +178,3 @@ function onClick(element) {
 
 </body>
 </html>
-
