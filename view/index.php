@@ -69,7 +69,7 @@ body {font-size:16px;}
 
 
 
-			<form class="contact1-form validate-form" action="../control/Control.php" method="POST">
+			<form class="contact1-form validate-form" action="../control/Control.php" method="POST" enctype="multipart/form-data">
 
 				<h4>Endereço do poste</h4>
 				<br/>
