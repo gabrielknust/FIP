@@ -56,14 +56,18 @@ class OcorrenciaDAO
         }
     }
     
-    public function excluir($id)
+    public function excluir($id_endereco, $id_ocorrencia, $id_poste)
     {
         try {
             $pdo = Conexao::connect();
-            $stmt = $pdo->prepare('DELETE from Ocorrencia where id_ocorrencia= :id_ocorrencia');
-            $stmt->execute(array(
-                ':id_ocorrencia' => $id_ocorrencia
-            ));
+            $sql = "call delOcorrencia(:id_ocorrencia,:id_poste,:id_endereco)";
+            $stmt = $pdo->prepare($sql);
+            
+            $stmt->bindParam(':id_ocorrencia',$id_ocorrencia);
+            $stmt->bindParam(':id_poste',$id_poste);
+            $stmt->bindParam(':id_endereco',$id_endereco);
+
+            $stmt->execute();
         } catch (PDOException $e) {
             echo 'Error: ' . $e->getMessage();
         }
