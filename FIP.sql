@@ -37,8 +37,8 @@ begin
 declare idE int;
 declare idP int;
 
-insert into Endereco(cep, vairro, rua, referencia)
-	values(cep, vairro, rua, referencia);
+insert into Endereco(cep, bairro, rua, referencia)
+	values(cep, bairro, rua, referencia);
 
 SELECT MAX(id_endereco)
 	INTO idE FROM Endereco;
