@@ -19,11 +19,28 @@
 <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="css/util.css">
     <link rel="stylesheet" type="text/css" href="css/main.css">
+<!--===============================================================================================-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 <style>
 body,h1,h2,h3,h4,h5 {font-family: "Poppins", sans-serif}
 body {font-size:16px;}
 .w3-half img{margin-bottom:-6px;margin-top:16px;opacity:0.8;cursor:pointer}
 .w3-half img:hover{opacity:1}
+
+.alta {
+  background-color:  rgba(255, 0, 0, 0.5);
+}
+.média {
+  background-color:  rgba(255, 255, 0, 0.5);
+}
+.baixa {
+  background-color: rgba(0,128,0,0.5);
+}
+.resolvida {
+  background-color: rgba(192,192,192,0.5);
+}
+i{
+}
 </style>
 <body>
 
@@ -75,6 +92,8 @@ body {font-size:16px;}
           <td>Defaultson</td>
           <td>def@somemail.com</td>
           <td>adsavvd</td>
+          <td><button><i class="fas fa-edit"></i></button></td>
+          <td><button><i class="fas fa-trash-alt"></i></button></td>
         </tr>      
       </tbody>
     </table>
@@ -136,3 +155,4 @@ function onClick(element) {
 
 </body>
 </html>
+
