@@ -3,39 +3,27 @@
 <title>FIP</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<?php
-  if(isset($_SESSION['usuario'])){
-    session_destroy();  
-  }
-?>
 <link rel="stylesheet" href="./css/style.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
 <link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+    <link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
+    <link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+    <link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="css/util.css">
-	<link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/util.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
 <style>
 body,h1,h2,h3,h4,h5 {font-family: "Poppins", sans-serif}
 body {font-size:16px;}
 .w3-half img{margin-bottom:-6px;margin-top:16px;opacity:0.8;cursor:pointer}
 .w3-half img:hover{opacity:1}
-
-.alta {
-  background-color: rgba(207, 0, 15, 0.5);
-}
-.media {
-  background-color: rgba(255,255,0,0.5);
-}
 </style>
 <body>
 
@@ -46,9 +34,9 @@ body {font-size:16px;}
     <h3 class="w3-padding-64"><b>FIP</b></h3>
   </div>
   <div class="w3-bar-block">
-    <a href="./index.php" class="w3-bar-item w3-button w3-hover-white">Fazer Ocorrência</a> 
-    <a href="#" class="w3-bar-item w3-button w3-hover-white">Últimas ocorrências</a> 
-    <a href="admin.php" class="w3-bar-item w3-button w3-hover-white">Administrador</a> 
+    <a href="./index.html" class="w3-bar-item w3-button w3-hover-white">Fazer Ocorrência</a> 
+    <a href="ultimasOcorrencias.php" class="w3-bar-item w3-button w3-hover-white">Últimas ocorrências</a> 
+    <a href="#" class="w3-bar-item w3-button w3-hover-white">Administrador</a> 
 
   </div>
 </nav>
@@ -69,7 +57,8 @@ body {font-size:16px;}
   <div class="w3-container" style="margin-top:80px" id="showcase">
     <h1 class=""><b>Gerenciador de falta de iluminação pública</b></h1> <br/>
 
-    <h1 class="w3-xxxlarge w3-text-red"><b>Últimas ocorrências.</b></h1>
+    <h1 class="w3-xxxlarge w3-text-red"><b>Bem Vindo, Administrador</b></h1>
+  
     <div class="w3-padding w3-white notranslate">
       <table class="table" style="margin-top: 40px;">
       <thead>
@@ -96,14 +85,14 @@ body {font-size:16px;}
 <!-- W3.CSS Container -->
 
 <!--===============================================================================================-->
-	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+    <script src="vendor/jquery/jquery-3.2.1.min.js"></script>
 <!--===============================================================================================-->
-	<script src="vendor/bootstrap/js/popper.js"></script>
-	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="vendor/bootstrap/js/popper.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
 <!--===============================================================================================-->
-	<script src="vendor/select2/select2.min.js"></script>
+    <script src="vendor/select2/select2.min.js"></script>
 <!--===============================================================================================-->
-	<script src="vendor/tilt/tilt.jquery.min.js"></script>
+    <script src="vendor/tilt/tilt.jquery.min.js"></script>
 
 <script>
 // Script to open and close sidebar
@@ -127,10 +116,10 @@ function onClick(element) {
 </script>
 
 <script >
-		$('.js-tilt').tilt({
-			scale: 1.1
-		})
-	</script>
+        $('.js-tilt').tilt({
+            scale: 1.1
+        })
+    </script>
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
@@ -143,7 +132,7 @@ function onClick(element) {
 </script>
 
 <!--===============================================================================================-->
-	<script src="js/main.js"></script>
+    <script src="js/main.js"></script>
 
 </body>
 </html>
