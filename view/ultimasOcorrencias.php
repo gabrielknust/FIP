@@ -31,10 +31,16 @@ body {font-size:16px;}
 .w3-half img:hover{opacity:1}
 
 .alta {
-  background-color: rgba(207, 0, 15, 0.5);
+  background-color:  rgba(255, 0, 0, 0.5);
 }
-.media {
-  background-color: rgba(255,255,0,0.5);
+.média {
+  background-color:  rgba(255, 255, 0, 0.5);
+}
+.baixa {
+  background-color: rgba(0,128,0,0.5);
+}
+.resolvida {
+  background-color: rgba(192,192,192,0.5);
 }
 </style>
 <body>
@@ -81,7 +87,7 @@ body {font-size:16px;}
         </tr>
       </thead>
       <tbody>
-        <tr class="alta">
+        <tr class="resolvida">
           <td>Default</td>
           <td>Defaultson</td>
           <td>def@somemail.com</td>
