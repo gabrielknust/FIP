@@ -3,6 +3,11 @@
 <title>FIP</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<?php
+	if(isset($_SESSION['usuario'])){
+		session_destroy();	
+	}
+?>
 <link rel="stylesheet" href="./css/style.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
 <link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
@@ -35,8 +40,8 @@ body {font-size:16px;}
   </div>
   <div class="w3-bar-block">
     <a href="#" class="w3-bar-item w3-button w3-hover-white">Fazer Ocorrência</a> 
-    <a href="./ultimasOcorrencias.html" class="w3-bar-item w3-button w3-hover-white">Últimas ocorrências</a> 
-    <a href="./admin.html" class="w3-bar-item w3-button w3-hover-white">Administrador</a> 
+    <a href="ultimasOcorrencias.php" class="w3-bar-item w3-button w3-hover-white">Últimas ocorrências</a> 
+    <a href="admin.php" class="w3-bar-item w3-button w3-hover-white">Administrador</a> 
 
   </div>
 </nav>
