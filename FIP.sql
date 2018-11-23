@@ -53,4 +53,14 @@ insert into Ocorrencia(id_poste, classificaUrgencia, descricaoUrgencia)
 	values(idP, classificaUrgencia, descricaoUrgencia);
     
 end &&
+
+CREATE PROCEDURE delOcorrencia (in id_o int, in id_p int, in id_e int)
+
+begin
+
+DELETE FROM Ocorrencia WHERE id_ocorrencia = id_o;
+DELETE FROM Poste WHERE id_poste = id_p;
+DELETE FROM Endereco WHERE id_endereco = id_e;
+
+end &&
 DELIMITER ;
