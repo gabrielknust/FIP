@@ -7,6 +7,8 @@ include_once '../dao/Conexao.php';
 class OcorrenciaControle
 {
 	public function verificar(){
+
+		
 		extract($_REQUEST);
 		if(!isset($cep) || empty($cep)){
 			$msg = "CEP do endereço não informado. Por favor, informe um CEP!";
@@ -38,21 +40,24 @@ class OcorrenciaControle
 			$msg = "Descrição da urgência não informada. Por favor, informe uma descrição para urgência";
 			header('Location: ../view/index.php?msg='.$msg);
 		}
-		else{
-
+			if(!empty($_FILES['foto']['tmp_name']))
+				{
+					$imagem=base64_encode(file_get_contents($_FILES['foto']['tmp_name']));
+				}
+				else{
+					$foto='null';
+				}
 			$ocorrencia = new Ocorrencia($cep, $bairro, $rua, $ponto_de_referencia);
 			$ocorrencia->setFoto($foto);
 			$ocorrencia->setNumeracao($numeracao);
 			$ocorrencia->setClassificaUrgencia($classificaUrgencia);
 			$ocorrencia->setDescricaoUrgencia($descricaoUrgencia);
 			return $ocorrencia;
-		}	
-	}
+		}
 
 	public function incluir(){
 		$ocorrencia = $this->verificar();
 		$ocoDAO = new OcorrenciaDAO();
-
 		try{
 			$ocoDAO->incluir($ocorrencia);
 			$msg="Ocorrência cadastrada com sucesso!";

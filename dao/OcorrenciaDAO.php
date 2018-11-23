@@ -17,7 +17,7 @@ class OcorrenciaDAO
             $cep=$ocorrencia->getCep();
             $bairro=$ocorrencia->getBairro();
             $rua=$ocorrencia->getRua();
-            $referencia=$ocorrencia->getReferencia();
+            $referencia=$ocorrencia->getPonto_de_referencia();
             $foto=$ocorrencia->getFoto();
             $numeracao=$ocorrencia->getNumeracao();
             $classificaUrgencia=$ocorrencia->getClassificaUrgencia();
