@@ -99,11 +99,11 @@ class OcorrenciaDAO
         try{
             $ocorrencias=array();
             $pdo = Conexao::connect();
-            $consulta = $pdo->query("SELECT e.bairro, e.rua, e.referencia, p.numeracao, o.classificaUrgencia, o.descricaoUrgencia FROM Endereco e INNER JOIN Poste p ON e.id_endereco = p.id_endereco INNER JOIN Ocorrencia o on p.id_poste = o.id_poste");
+            $consulta = $pdo->query("SELECT e.id_endereco,o.id_poste,o.id_ocorrencia,e.bairro, e.rua, e.referencia, p.numeracao, o.classificaUrgencia, o.descricaoUrgencia FROM Endereco e INNER JOIN Poste p ON e.id_endereco = p.id_endereco INNER JOIN Ocorrencia o on p.id_poste = o.id_poste");
             $produtos = Array();
             $x=0;
             while($linha = $consulta->fetch(PDO::FETCH_ASSOC)){
-                $ocorrencias[$x]=array('bairro'=>$linha['bairro'],'rua'=>$linha['rua'],'referencia'=>$linha['referencia'],'numeracao'=>$linha['numeracao'],'classificaUrgencia'=>$linha['classificaUrgencia'],'descricaoUrgencia'=>$linha['descricaoUrgencia']);
+                $ocorrencias[$x]=array('id_endereco'=>$linha['id_endereco'],'id_poste'=>$linha['id_poste'],'id_ocorrencia'=>$linha['id_ocorrencia'],'bairro'=>$linha['bairro'],'rua'=>$linha['rua'],'referencia'=>$linha['referencia'],'numeracao'=>$linha['numeracao'],'classificaUrgencia'=>$linha['classificaUrgencia'],'descricaoUrgencia'=>$linha['descricaoUrgencia']);
                 $x++;
             }
             } catch (PDOExeption $e){
