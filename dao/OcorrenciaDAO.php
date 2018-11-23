@@ -1,22 +1,41 @@
 <?php
 include_once '../model/Ocorrencia.php';
 include_once '../dao/Conexao.php';
+include_once '../model/Poste.php';
 
 class OcorrenciaDAO
 {
     
-    public function adicionar($ocorrencia)
-    {
+    public function incluir($ocorrencia)
+    {        
         try {
+            $sql = 'call cadOcorrencia(:cep,:bairro,:rua,:referencia,:foto,:numeracao,:classificaUrgencia,:descricaoUrgencia)';
+            $sql = str_replace("'", "\'", $sql);            
             $pdo = Conexao::connect();
-            $sql = 'INSERT Ocorrencia(classificaUrgencia, descricaoUrgencia) VALUES(:classificaUrgencia, :descricaoUrgencia)';
             $stmt = $pdo->prepare($sql);
-            $stmt->execute(array(
-                ':classificaUrgencia' => $ocorrencia->getClassificaUrgencia(),
-                ':descricaoUrgencia' => $ocorrencia->getDescricaoUrgencia()
-            ));
-        } catch (PDOException $e) {
-            echo 'Error: ' . $e->getMessage();
+
+            $cep=$ocorrencia->getCep();
+            $bairro=$ocorrencia->getBairro();
+            $rua=$ocorrencia->getRua();
+            $referencia=$ocorrencia->getReferencia();
+            $foto=$ocorrencia->getFoto();
+            $numeracao=$ocorrencia->getNumeracao();
+            $classificaUrgencia=$ocorrencia->getClassificaUrgencia();
+            $descricaoUrgencia=$ocorrencia->getDescricaoUrgencia();
+
+
+            $stmt->bindParam(':cep',$cep);
+            $stmt->bindParam(':bairro',$bairro);
+            $stmt->bindParam(':rua',$rua);
+            $stmt->bindParam(':referencia',$referencia);
+            $stmt->bindParam(':foto',$foto);
+            $stmt->bindParam(':numeracao',$numeracao);
+            $stmt->bindParam(':classificaUrgencia',$classificaUrgencia);
+            $stmt->bindParam(':descricaoUrgencia',$descricaoUrgencia);
+            $stmt->execute();
+
+        }catch (PDOExeption $e) {
+            echo 'Error: <b>  na tabela Ocorrencia = ' . $sql . '</b> <br /><br />' . $e->getMessage();
         }
     }
     
@@ -50,12 +69,11 @@ class OcorrenciaDAO
         }
     }
     
-    public function listar($nome)
+    public function listar($id)
     {
-        $nome = "%" . $nome . "%";
         try {
             $pdo = Conexao::connect();
-            $sql = "SELECT classificaUrgencia,descricaoUrgencia FROM Ocorrencia where nome like :nome";
+            $sql = "SELECT classificaUrgencia,descricaoUrgencia FROM Ocorrencia where id_ocorrencia=:id";
             $consulta = $pdo->prepare($sql);
             $consulta->execute(array(
                 ':nome' => $nome
@@ -72,5 +90,22 @@ class OcorrenciaDAO
         return $ocorrencias;
     }
     
+    public function listarTodos(){
+
+        try{
+            $ocorrencias=array();
+            $pdo = Conexao::connect();
+            $consulta = $pdo->query("SELECT e.bairro, e.rua, e.referencia, p.numeracao, o.classificaUrgencia, o.descricaoUrgencia FROM Endereco e INNER JOIN Poste p ON e.id_endereco = p.id_endereco INNER JOIN Ocorrencia o on p.id_poste = o.id_poste");
+            $produtos = Array();
+            $x=0;
+            while($linha = $consulta->fetch(PDO::FETCH_ASSOC)){
+                $ocorrencias[$x]=array('bairro'=>$linha['bairro'],'rua'=>$linha['rua'],'referencia'=>$linha['referencia'],'numeracao'=>$linha['numeracao'],'classificaUrgencia'=>$linha['classificaUrgencia'],'descricaoUrgencia'=>$linha['descricaoUrgencia']);
+                $x++;
+            }
+            } catch (PDOExeption $e){
+                echo 'Error:' . $e->getMessage;
+            }
+            return json_encode($ocorrencias);
+        }
     
 }

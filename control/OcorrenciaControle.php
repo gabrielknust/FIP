@@ -2,6 +2,7 @@
 
 require_once '../model/Ocorrencia.php';
 require_once '../dao/OcorrenciaDAO.php';
+include_once '../dao/Conexao.php';
 
 class OcorrenciaControle
 {
@@ -54,8 +55,8 @@ class OcorrenciaControle
 
 		try{
 			$ocoDAO->incluir($ocorrencia);
-			$_SESSION['msg']="Ocorrência cadastrada com sucesso!";
-			header('Location: ../view/view.php');
+			$msg="Ocorrência cadastrada com sucesso!";
+			header('Location: ../view/index.php?msg='.$msg);
 		} catch (PDOException $e){
             $msg= "Não foi possível registrar o interno"."<br>".$e->getMessage();
             echo $msg;
@@ -76,7 +77,7 @@ class OcorrenciaControle
     }
 
     public function listarUm($id){
-    	
+
     }
 
 }
